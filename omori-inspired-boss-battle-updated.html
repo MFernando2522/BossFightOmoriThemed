@@ -25,7 +25,7 @@
         
         #message-box {
             position: absolute;
-            top: 1px;
+            top: -8px;
             left: 50%;
             transform: translateX(-50%);
             background-color: #000;
@@ -38,7 +38,7 @@
         
         #player {
             position: absolute;
-            top: 50%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 300px;
@@ -128,7 +128,7 @@
         
         #actions {
             position: absolute;
-            bottom: 20px;
+            bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
             width: 400px;
@@ -295,7 +295,7 @@
         </div>
         
         <!-- Bosses -->
-        <div class="boss" id="boss1" style="top: 50px; left: 50%; transform: translateX(-50%);">
+        <div class="boss" id="boss1" style="top: 39px; left: 50%; transform: translateX(-50%);">
             <div class="boss-label">NEUTRAL</div>
             <div class="boss-image-container">
                 <img class="boss-image" src="Crook1.gif" alt="Boss 1">
@@ -670,7 +670,7 @@
                 
                 // Apply weakness if player chose to weaken bosses
                 if (gameState.bossesWeakened) {
-                    damage = Math.floor(damage * 0.5);
+                    damage = Math.floor(damage * 0.1);
                 }
                 
                 totalDamage += damage;
