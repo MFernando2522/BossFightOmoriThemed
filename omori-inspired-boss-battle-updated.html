@@ -6,7 +6,8 @@
     <title>OMORI-Inspired Boss Battle</title>
     <style>
         body {
-            background-color: #000;
+            background: url('Alley.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             font-family: 'Courier New', monospace;
             display: flex;
@@ -16,6 +17,7 @@
             margin: 0;
             overflow: hidden;
         }
+
         
         #game-container {
             position: relative;
@@ -284,15 +286,64 @@
             margin-top: 20px;
         }
     </style>
+    <style>
+        #start-dialog {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 150;
+        }
+        
+        #start-dialog-content {
+            background-color: #000;
+            border: 2px solid #fff;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 400px;
+        }
+        
+        #start-dialog-text {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        #start-button {
+            padding: 10px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #000;
+            border: 2px solid #fff;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <div id="game-container">
+
+        <div id="start-dialog">
+            <div id="start-dialog-content">
+                <div id="start-dialog-text">You were on a walk. Suddenly, you get cornered by 4 masked people.</div>
+                <div id="start-dialog-text">You feel like your gonna have a bad time.</div>
+                <button id="start-button">What, there's boss music?!</button>
+            </div>
+        </div>
+
         <audio id="bgm" src="Main Theme (CD Version) - Bad Piggies.mp3" loop autoplay></audio>
-        <div id="message-box">POV: You are getting jumped! Uh oh!</div>
+        <div id="message-box">POV: You are getting jumped! UH OH!</div>
         
         <!-- Player -->
         <div id="player">
-            <img src="Alley.jpg" alt="Player Character">
+            <img src="PrimaryKeyProtagonist.gif" alt="Player Character">
         </div>
         
         <!-- Bosses -->
@@ -310,7 +361,7 @@
             <div class="boss-stats" id="boss1-stats">50/50</div>
         </div>
         
-        <div class="boss" id="boss2" style="top: 50%; left: 50px; transform: translateY(-50%) translateX(-100%);">
+        <div class="boss" id="boss2" style="top: 50%; left: 200px; transform: translateY(-50%) translateX(-100%);">
             <div class="boss-label">NEUTRAL</div>
             <div class="boss-image-container">
                 <img class="boss-image" src="Crook2.gif" alt="Boss 2">
@@ -324,7 +375,7 @@
             <div class="boss-stats" id="boss2-stats">50/50</div>
         </div>
         
-        <div class="boss" id="boss3" style="top: 50%; right: 50px; transform: translateY(-50%) translateX(100%);">
+        <div class="boss" id="boss3" style="top: 50%; right: 200px; transform: translateY(-50%) translateX(100%);">
             <div class="boss-label">NEUTRAL</div>
             <div class="boss-image-container">
                 <img class="boss-image" src="Crook3.gif" alt="Boss 3">
@@ -569,8 +620,7 @@
             let direction = 1;
             let position = 0;
             //const speed = 5;
-            const speed = Math.floor(Math.random() * 4) + 3; // random speed between 3 and 6
-            
+            const speed = Math.floor(Math.random() * 7) + 4; // random speed between 4 and 7
             const maxPosition = 400 - 4; // container width - cursor width
             
             gameState.reactionInterval = setInterval(() => {
@@ -791,6 +841,19 @@
             if (gameState.currentMinigame === 'trueFalse') {
                 handleTrueFalseResult(false);
             }
+        });
+
+        // Start dialog functionality
+        document.getElementById('start-button').addEventListener('click', function() {
+            // Play the BGM when OK is clicked
+            const bgm = document.getElementById('bgm');
+            bgm.play();
+            
+
+            // gameOverScreen.style.display = 'none';
+            // Don't show start dialog on restart
+            document.getElementById('start-dialog').style.display = 'none';
+            
         });
 
         // Initialize game
