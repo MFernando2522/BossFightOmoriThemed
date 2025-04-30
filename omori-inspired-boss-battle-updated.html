@@ -25,7 +25,7 @@
         
         #message-box {
             position: absolute;
-            top: -8px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             background-color: #000;
@@ -287,6 +287,7 @@
 </head>
 <body>
     <div id="game-container">
+        <audio id="bgm" src="Main Theme (CD Version) - Bad Piggies.mp3" loop autoplay></audio>
         <div id="message-box">POV: You are getting jumped! Uh oh!</div>
         
         <!-- Player -->
@@ -444,7 +445,21 @@
             { question: "Jupiter is the largest planet in our solar system.", answer: true },
             { question: "Spiders are insects.", answer: false },
             { question: "The Mona Lisa was painted by Leonardo da Vinci.", answer: true },
-            { question: "Oxygen is the most abundant element in Earth's atmosphere.", answer: false }
+            { question: "Oxygen is the most abundant element in Earth's atmosphere.", answer: false },
+            { question: "Does Nuno weaken his aura on purpose with glasses?", answer: true },
+            { question: "Who does this mugging even benefit? Robbers?", answer: true },
+            { question: "The games made by row three are: Gamehub, Portnite and OnlyGames", answer: true },
+            { question: "Did Marc clutch when asked about the original name for portnite?", answer: true },
+            { question: "Is it tradition to go to Waffle House after prom?", answer: true },
+            { question: "During this project, it was Henry who downloaded the NC Offender List.", answer: false },
+            { question: "Last vibecode, Vir's game had a guest appearance featuring Henry.", answer: false },
+            { question: "Last vibecode, Tyler Ellis did an RPG game.", answer: false },
+            { question: "Gavin was at class at 4/30/2025 at 8:05 AM.", answer: false },
+            { question: "The Biotechnology field is overrated.", answer: true },
+            { question: "Is the Primary Key a person?", answer: true },
+            { question: "Will something like this game happen to you at 11:23 AM?", answer: false }
+
+
         ];
 
         // Update health bars
@@ -468,6 +483,14 @@
                 }
             });
         }
+
+        document.body.addEventListener('click', function () {
+    const bgm = document.getElementById('bgm');
+    if (bgm.paused) {
+        bgm.play();
+    }
+});
+
 
         // Select a boss to attack
         function selectBossToAttack() {
@@ -545,7 +568,9 @@
             // Start the cursor moving
             let direction = 1;
             let position = 0;
-            const speed = 3;
+            //const speed = 5;
+            const speed = Math.floor(Math.random() * 4) + 3; // random speed between 3 and 6
+            
             const maxPosition = 400 - 4; // container width - cursor width
             
             gameState.reactionInterval = setInterval(() => {
