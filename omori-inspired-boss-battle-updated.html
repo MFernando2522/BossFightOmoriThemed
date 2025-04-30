@@ -439,7 +439,7 @@
             
             <!-- Reaction Minigame -->
             <div id="reaction-container">
-                <div id="reaction-instructions">Press SPACE when the cursor is in the target zone!</div>
+                <div id="reaction-instructions">Press SPACE when the cursor is in the target zone! Ten percent chance to get impossible speed.</div>
                 <div id="reaction-bar-container">
                     <div id="reaction-target"></div>
                     <div id="reaction-cursor"></div>
@@ -459,9 +459,9 @@
             },
             bosses: [
                 { id: 1, health: 50, maxHealth: 50, energy: 20, maxEnergy: 20, damage: 2 },
-                { id: 2, health: 50, maxHealth: 50, energy: 20, maxEnergy: 20, damage: 2 },
+                { id: 2, health: 50, maxHealth: 50, energy: 20, maxEnergy: 20, damage: 3 },
                 { id: 3, health: 50, maxHealth: 50, energy: 20, maxEnergy: 20, damage: 2 },
-                { id: 4, health: 50, maxHealth: 50, energy: 20, maxEnergy: 20, damage: 2 }
+                { id: 4, health: 50, maxHealth: 50, energy: 20, maxEnergy: 20, damage: 3 }
             ],
             currentTurn: 'player',
             bossesDefeated: 0,
@@ -627,7 +627,7 @@
             //const speed = 5;
             let speed;
 
-            if (Math.random() < 0.09) { // 9% chance ( funny but somewhat rare)
+            if (Math.random() < 0.10) { // 10% chance ( funny but somewhat rare)
                 speed = 45; //This makes the minigame really impossible which is really funny
             } else {
                 speed = Math.floor(Math.random() * 7) + 5; // 5 to 10 inclusive
@@ -672,7 +672,7 @@
                 reactionResult.textContent = 'Perfect hit!';
                 setTimeout(() => completeMinigame(true), 1500);
             } else {
-                reactionResult.textContent = 'Missed! Regular damage.';
+                reactionResult.textContent = 'Missed!';
                 setTimeout(() => completeMinigame(false), 1500);
             }
         }
